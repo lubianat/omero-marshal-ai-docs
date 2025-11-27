@@ -58,6 +58,39 @@ Key notes:
 - Annotation links are included only when loaded; call ``loadAnnotations`` if
   you need them.
 
+Round-trip an IDR image (read-only)
+-----------------------------------
+
+Use the public Image Data Resource (IDR) to practice on real data without
+mutating anything. Connection details come from the IDR docs; replace the image
+ID with one you can see in the IDR UI::
+
+    from omero.gateway import BlitzGateway
+    from omero_marshal import get_encoder, get_decoder
+
+    conn = BlitzGateway(
+        "public", "public",
+        host="idr.openmicroscopy.org",
+        port=4064,
+        secure=True,
+    )
+    assert conn.connect()
+
+    image = conn.getObject("Image", 6001240)  # pick a real IDR image id
+    image_obj = image._obj                    # unwrap the model object
+
+    payload = get_encoder(image_obj.__class__).encode(image_obj, include_context=True)
+    restored = get_decoder(payload["@type"]).decode(payload)
+
+    conn.close()
+
+Notes:
+
+- IDR is read-only for public users; this flow never writes anything back.
+- Using ``secure=True`` matches the IDR BlitzGateway settings; check the IDR
+  docs if host/port change.
+- Grab smaller images for quick tests to keep payload size manageable.
+
 Serve metadata over HTTP
 ------------------------
 

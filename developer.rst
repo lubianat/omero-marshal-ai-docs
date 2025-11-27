@@ -53,6 +53,16 @@ Create a new codec (step-by-step)
    assert dictionary equality, decode, assert field equivalence. Include
    unloaded variants.
 
+Running tests
+-------------
+
+- In the upstream ``omero-marshal`` repository, install the package in editable
+  mode and pull in test deps (at minimum ``pytest``) inside a virtualenv.
+- Run ``pytest tests`` to execute the full suite. Target a codec with something
+  like ``pytest tests/unit/test_image.py -k 201606`` to iterate faster.
+- Add round-trip assertions for any new fields you encode/decode so behaviour
+  is locked down for both schema versions.
+
 Debugging registration
 ----------------------
 

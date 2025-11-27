@@ -10,14 +10,16 @@ Architecture
 Dynamic registry
 ----------------
 
-- On import, ``omero_marshal/__init__.py`` walks the ``encode/encoders`` and
-  ``decode/decoders`` packages with ``pkgutil``.
-- Each module exposes an ``encoder`` or ``decoder`` tuple of
-  ``(source_type, EncoderClass)`` or ``(schema_uri, DecoderClass)`` which is
-  added to an in-memory registry.
+- Importing ``omero_marshal`` triggers a ``pkgutil`` walk of
+  ``encode/encoders`` and ``decode/decoders``; modules are imported to pick up
+  registrations.
+- Each module exports an ``encoder`` or ``decoder`` tuple of
+  ``(source_type, EncoderClass)`` or ``(schema_uri, DecoderClass)``. Tuples
+  that are missing or misnamed will not be registered.
 - ``get_encoder(<omero.model.Class>)`` and ``get_decoder(<@type string>)``
-  fetch the relevant codec. Codecs receive a shared ``MarshallingCtx`` so they
-  can resolve nested objects recursively.
+  look up entries in the in-memory registry and return ``None`` when absent.
+  Codecs receive a shared ``MarshallingCtx`` so they can resolve nested objects
+  recursively and reuse cached lookups.
 
 Schema version resolution
 -------------------------

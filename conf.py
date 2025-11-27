@@ -6,7 +6,7 @@ Docs without pulling in the full OMERO stack. No package imports are needed.
 
 project = "OMERO Marshal (Unofficial AI Guide)"
 author = "Open Microscopy Environment and contributors — AI-generated companion"
-release = "0.9.1.dev0"
+release = "0.9.2"
 version = release
 
 extensions = [

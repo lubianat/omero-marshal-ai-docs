@@ -18,13 +18,13 @@ It acts as a bridge between server-side model objects (``Project``, ``Image``,
 ``Well``, :term:`ROI` shapes, and annotations) and client-side tools that expect JSON,
 such as web frontends, Jupyter notebooks, or lightweight microservices.
 
-Why this matters for bioinformaticians
+Why this matters for engineering teams
 --------------------------------------
 
-Large image-analysis workflows often need to copy metadata out of OMERO (for
-example to feed a downstream REST API, cache metadata alongside image
-derivatives, or inspect provenance in notebooks) and later push curated values
-back in. The codecs in this repository:
+Image-analysis pipelines and data platforms often need to copy metadata out of
+OMERO (for example to feed a downstream REST API, cache metadata alongside
+image derivatives, or inspect provenance in notebooks) and later push curated
+values back in. The codecs in this repository:
 
 - normalise identifiers, schema URIs, and namespaces so data stays compatible
   with OME XML 2015-01 and 2016-06;

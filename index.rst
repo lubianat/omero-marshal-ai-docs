@@ -1,9 +1,9 @@
 OMERO Marshal Documentation
 ===========================
 
-Guides for bioinformaticians who need to turn OMERO model objects into
-portable, JSON-friendly dictionaries and back again. The notes below focus on
-how the codecs work, what gets included, and how to extend them safely.
+Guides for people who need to turn OMERO model objects into portable,
+JSON-friendly dictionaries and back again. The notes below focus on how the
+codecs work, what gets included, and how to extend them safely.
 
 .. warning::
    This is an **unofficial, AI-generated companion** to the upstream
@@ -16,11 +16,17 @@ how the codecs work, what gets included, and how to extend them safely.
    example :term:`Marshalling` or :term:`Codec`) so you can jump straight to
    definitions without losing your place.
 
+.. note::
+   Need an offline copy? Read the Docs builds publish full-site downloads
+   (PDF, EPUB, and HTML zip) from the **Downloads** menu; grab those for
+   complete docs in one go.
+
 .. toctree::
    :maxdepth: 2
 
    quickstart
    overview
+   design_notes
    usage
    tutorials
    architecture
@@ -31,4 +37,5 @@ how the codecs work, what gets included, and how to extend them safely.
    faq
    use_cases
    examples
+   releases
    glossary

@@ -101,3 +101,26 @@ How do I sanity-check a payload quickly?
 - Run a quick decode/encode round-trip in a REPL; compare to expected examples
   in :doc:`examples`. Remember these docs are unofficial; upstream behaviour is
   the source of truth.
+
+Troubleshooting
+---------------
+
+``get_decoder`` returns ``None``
+   Check the payload includes ``@type`` and that the URI matches a registered
+   codec. Missing or truncated URIs cannot be resolved. If you are using a new
+   schema, add the codec first.
+
+BlitzGateway connection fails (ICE/SSL errors)
+   Verify host/port/secure settings (for IDR: ``host=idr.openmicroscopy.org``,
+   ``port=4064``, ``secure=True``, user ``public``/``public``). Ensure
+   ``omero-py`` is installed with a compatible Ice runtime and that outbound
+   ports are allowed by your firewall.
+
+Payloads miss units or colours
+   Unloaded links or unsupported unit classes lead to missing fields. Load
+   linked objects before encoding and extend ``encode_unit``/``to_unit`` if you
+   add new unit types.
+
+Contexts appear multiple times
+   Pass ``include_context=False`` when encoding nested objects; keep a single
+   context at the top level.
